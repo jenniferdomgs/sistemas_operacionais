@@ -1,0 +1,33 @@
+96465 execve("./copy", ["./copy", "origem.txt", "destino.txt"], 0x7ffe04a78508 /* 164 vars */) = 0
+96465 arch_prctl(0x3001 /* ARCH_??? */, 0x7ffeae2adbf0) = -1 EINVAL (Invalid argument)
+96465 brk(NULL)                         = 0x224e7000
+96465 brk(0x224e7d80)                   = 0x224e7d80
+96465 arch_prctl(ARCH_SET_FS, 0x224e7380) = 0
+96465 set_tid_address(0x224e7650)       = 96465
+96465 set_robust_list(0x224e7660, 24)   = 0
+96465 rseq(0x224e7d20, 0x20, 0, 0x53053053) = 0
+96465 uname({sysname="Linux", nodename="jennifer-Dell-15-DC15250", ...}) = 0
+96465 prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+96465 readlink("/proc/self/exe", "/home/jennifer/sistemas_operacio"..., 4096) = 41
+96465 getrandom("\xe6\x00\x55\x67\x94\x69\xf4\x7a", 8, GRND_NONBLOCK) = 8
+96465 brk(NULL)                         = 0x224e7d80
+96465 brk(0x22508d80)                   = 0x22508d80
+96465 brk(0x22509000)                   = 0x22509000
+96465 mprotect(0x4b0000, 16384, PROT_READ) = 0
+96465 openat(AT_FDCWD, "origem.txt", O_RDONLY) = 3
+96465 openat(AT_FDCWD, "destino.txt", O_WRONLY|O_CREAT, 0600) = 4
+96465 read(3, "copia teste\n", 1024)    = 12
+96465 write(4, "copia teste\n", 12)     = 12
+96465 read(3, "", 1024)                 = 0
+96465 close(4)                          = 0
+96465 close(3)                          = 0
+96465 exit_group(0)                     = ?
+96465 +++ exited with 0 +++
+
+
+explicação de cada chamada:
+openat -> abre o arquivo (nesse caso abre o de origem só para leitura e o de destino para escrita (cria antes))
+read -> lê blocos de até 1024 bytes do arquivo de origem
+write -> escreve os bytes lidos no arquivo de destino
+close -> fecha os 2 descritores de arquivo no fim
+exit_group -> encerra o processo 
