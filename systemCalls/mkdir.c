@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("Erro! passe todos os argumentos necessários.");
+        printf("Erro! passe todos os argumentos necessários.\n");
         return -1;
     }
 
